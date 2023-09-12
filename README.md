@@ -47,6 +47,8 @@ Ansible uses modules to perform different tasks, there are specific modules with
 Ansible playbooks: these are a set tasks arranged using the yaml/yml format in a file used to execute multiple tasks simultaneously.
 1:The components of a playbook include Variables, tasks, files, module, template, handlers. 2:Variables provide the much needed the flexibility in the playbooks, templates and inventory file. 3: Variables are of 2 types, system defined variables (built-in variables) like "hostvars, groups, group_names". These variables are not defined by the user, they are pre-defined by ansible. 4: The other type of variable are the user=defined variable of the custom variable like "myvar, var, tune_01 etc" The user define these kind of variables according to his requirement. 5: Variable names must always start with letters, it can have numbers,letters, numbers and underscore but no spaces or hyphen. 6: Ansible variables are defined by using the vars keyword in the playbook file.
 
+
+
 Example: 
 
  hosts: all 
@@ -56,6 +58,7 @@ Example:
   - name: Ansible variable basic usage
     debug:
       msg: "{{ salutations }}"
+
 
 
 

@@ -1,0 +1,15 @@
+---
+- hosts: ubuntu 
+  vars:
+    students:
+      - Mark: 
+          city: Melbourne 
+          address: 009-4456-000
+      - Cindy: 
+          city: Kosovo
+          address: 099-4456-00
+  tasks: 
+  - name: Ansible dictionary example
+    debug: 
+      msg: "{{ students }}"       
+    
