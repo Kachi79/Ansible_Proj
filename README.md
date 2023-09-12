@@ -113,7 +113,7 @@ Example:
 ---
 - hosts: all 
   vars:
-  saluatations: Hello Everyone!
+  saluatations: Say to Hello Everyone!
   tasks:
   - name: Ansible variable basic usage
     debug:
