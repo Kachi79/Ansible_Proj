@@ -96,7 +96,7 @@ group_name = The name of the specific agent_node on which ansible will run the t
 
 -u = -u: this flag allows us to pass the user argument.
 
-In this case it is ubuntu.
+In this case it is ubuntu user.
 
 Ansible uses modules to perform different tasks, there are specific modules with specific names for different tasks and they can all be found in the ansible documentation.
 
