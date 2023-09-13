@@ -1,0 +1,11 @@
+## This playbook installs multiple pkgs at the same time using the [] function.
+---
+- name: Installing packages in ansible 
+  hosts: RHEL 
+  become: true
+  tasks:
+  - name: installing packages 
+    yum:
+      name: ['gcc', 'make', ]
+      state: present 
+  
