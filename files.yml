@@ -1,0 +1,8 @@
+---
+- name: running a shell script with ansible 
+  become: yes 
+  hosts: ubuntu2
+  tasks: 
+    - name: Hello Message 
+      script: hello.sh 
+  
