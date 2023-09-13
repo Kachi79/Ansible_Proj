@@ -1,0 +1,13 @@
+---
+- name: Enable or disable SELinux 
+  hosts: RHEL
+  become: yes 
+  vars:  
+    status: disbled 
+  tasks:   
+  - name: change SELinux in configuration file 
+    lineinfile: 
+      path: /etc/selinux/config
+      regexp: '^SELINUX='
+      line: 'SELINUX={{ status }}'
+    
