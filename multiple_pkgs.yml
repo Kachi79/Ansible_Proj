@@ -1,0 +1,10 @@
+## This is playbook to uninstall hhtpd pkg on A redhat server.
+---
+- name: This Playbook is intended to install/uninstall multiple packages on one or more ansible clients 
+  hosts: RHEL 
+  become: yes 
+  tasks:
+  - name: unistalling httpd package  
+    yum: 
+      name: httpd 
+      state: absent 
