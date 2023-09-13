@@ -1,0 +1,9 @@
+##  The when condition in ansible is used to customize a task to suit our particular usecase.
+---
+- name: starting and stopping services 
+  hosts: ubuntu 
+  tasks:
+  - service: name=apache2 state=started 
+    when: ansible_host == "ubuntu"
+  - service: name=chronyd state=stopped 
+    when: ansible_host == "ubuntu5"
