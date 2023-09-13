@@ -4,5 +4,5 @@
   hosts: ubuntu2
   tasks: 
     - name: Hello Message 
-      script: hello.sh 
+      script: file.sh 
   

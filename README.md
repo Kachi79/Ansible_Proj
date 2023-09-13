@@ -64,3 +64,9 @@ Example:
 
 This example shows a playbook with the "vars" keyword used and the correct indentation (yml format).
 In this case, the variable is salutations, which is under the vars keyword indicating that it is a variable, and the salutations keyword has a value (Hello Everyone), it is put inside double curly bracket to show that it it a variable with a value, and when used the value will be displayed.
+
+##
+We can strore log files of the playbook execution in a stipulated location inside the ansible.cfg config file.
+simply add log_path=</tmp/ansible>
+note: ensure that the ansible file is pre-created in this location.
+

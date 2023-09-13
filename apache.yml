@@ -1,0 +1,16 @@
+---
+- name: configuring apache2 on my remote server 
+  hosts: ubuntu2
+  become: yes 
+  tasks: 
+
+  - name : Clean Up the Cache
+    apt: autoclean=true 
+
+  - name : Uninstall apache2 package
+    apt: name=apache2 state=absent
+
+  - name: Capture the Output
+    apt: name=tree state=present update_cache=true
+    register: apt_output
+  - debug: var=apt_output  
