@@ -1,0 +1,36 @@
+## This is a playbook that installs packages & also installs the firewall using the package manager.
+---
+- name: Configuring Apache webserver 
+  hosts: webserver 
+  become: yes 
+  tasks: 
+  - name: 
+    dnf: 
+      name: httpd 
+      state: present 
+
+  - name: Start Apache service 
+    dnf: 
+      name: httpd 
+      state: present 
+
+#  - name: Add firewall Rules 
+ #   firewalld: 
+  #    port: 80/tcp    
+   #   permanent: true 
+    #  state: enabled 
+
+ # - name: Reload Firewall config for the new rule 
+  #  systemd: 
+   #   name: firewalld
+    #  state: reloaded 
+
+  - name: copy index file to Apache Directory 
+    copy: 
+      src: /tmp/index.html
+      dest: /var/www/html 
+
+  - name: restart Apache service 
+    service: 
+      name: httpd 
+      state: restarted      
