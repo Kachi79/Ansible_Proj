@@ -64,3 +64,27 @@ Example:
 
 This example shows a playbook with the "vars" keyword used and the correct indentation (yml format).
 In this case, the variable is salutations, which is under the vars keyword indicating that it is a variable, and the salutations keyword has a value (Hello Everyone), it is put inside double curly bracket to show that it it a variable with a value, and when used the value will be displayed.
+
+## Tags
+`Tags are used to run specifics tasks from the list of tasks in a playbook by appending the tags keywork underneath the tasks section, example below.`
+
+`- name: restart Apache service 
+    service: 
+      name: httpd 
+      state: restarted   
+    tags:
+    - restart_tag      
+`
+`At runtime in the command line we pass the argument like this: ansible-playbook -v tags.yml --skip-tags="dnf_tag,start_tag,copy_tag,restart_tag" `
+with the --skip-tags="<name of tags>" all tags mentioned in the double quotes will be skippped.
+
+`At runtime also, if we pass the argument like this: ansible-playbook -v tags.yml --tags="dnf_tag,start_tag,copy_tag" `, only the tags metioned will execute the plays that have them, so all other tags will skipped.
+
+`- name: restart Apache service 
+    service: 
+      name: httpd 
+      state: restarted   
+    tags:
+    - always      
+`
+Here the always under the tags ensures that that task is always executed no matter what happens.

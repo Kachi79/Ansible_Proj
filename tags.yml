@@ -1,0 +1,43 @@
+---
+- name: Configuring Apache webserver 
+  hosts: webserver 
+  become: yes 
+  tasks: 
+  - name: 
+    dnf: 
+      name: httpd 
+      state: present 
+    tags:
+    - dnf_tag   
+
+  - name: Start Apache service 
+    dnf: 
+      name: httpd 
+      state: present
+    tags:
+    - start_tag    
+
+#  - name: Add firewall Rules 
+ #   firewalld: 
+  #    port: 80/tcp    
+   #   permanent: true 
+    #  state: enabled 
+
+ # - name: Reload Firewall config for the new rule 
+  #  systemd: 
+   #   name: firewalld
+    #  state: reloaded 
+
+  - name: copy index file to Apache Directory 
+    copy: 
+      src: /tmp/index.html
+      dest: /var/www/html 
+    tags:
+    - copy_tag   
+
+  - name: restart Apache service 
+    service: 
+      name: httpd 
+      state: restarted   
+    tags:
+    - restart_tag      
