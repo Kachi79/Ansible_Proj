@@ -88,3 +88,46 @@ with the --skip-tags="<name of tags>" all tags mentioned in the double quotes wi
     - always      
 `
 Here the always under the tags ensures that that task is always executed no matter what happens.
+
+## Ansible roles:
+`, roles are a way to organize and structure your playbooks and automation tasks into reusable and shareable units. Roles provide a modular approach to managing configurations and tasks, making it easier to manage complex infrastructure and promote code reuse. Roles are a fundamental component of Ansible best practices`
+
+The file structure of ansible roles is as follow:
+
+`my_role/
+│
+├── defaults/             # Default variable values
+│   └── main.yml
+│
+├── files/                # Files to be copied to remote hosts
+│
+├── handlers/             # Handlers for the role
+│   └── main.yml
+│
+├── meta/                 # Role metadata and dependencies
+│   └── main.yml
+│
+├── tasks/                # Tasks to be executed
+│   └── main.yml
+│
+├── templates/            # Jinja2 templates
+│
+├── tests/                # Role testing
+│   ├── inventory
+│   └── test.yml
+│
+├── vars/                 # Other variables
+│   └── main.yml
+│
+└── README.md             # Role documentation`
+
+`With ansible roles, we can configure/create a clean directory hierachy structure from an existing playbook.
+` 
+we will the the command `ansible-galaxy init <the path where you want the role directory to be created in my case it is ~/Ansible_proj/roles/existing_playbook --offline>`
+
+This is the command for creating roles `ansible-galaxy init ~/Ansible_Proj/roles/apache --offline`. in this case i am creating a role to organize a playbook i already used preveiously, this time the role will create a perfectly defined directory structure using the files and folders from the existing playbook. apache here is the name i chose to give the roles directory, I chose apache because I intend to use the role for apache package. 
+
+`Step 1: We go into the tasks directory which is under the apache directory under the newly created roles directory, from the tasks folder we go into the main.yml file(main.yml is created by default when the roles dircetory is created, this is where we keep all our codes for execution) and copy all the tasks from 
+the existing/previous playbook and paste it inside it.  `cd > roles cd > apache cd > tasks > nano/vi main.yml`   , inside main.yml we paste all the tasks from the existing playbook`
+
+Step 2:  
