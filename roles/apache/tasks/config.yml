@@ -1,0 +1,5 @@
+---
+- name: copy index file to Apache Directory 
+  copy: 
+    src: files/index.html
+    dest: /var/www/html 

@@ -1,0 +1,5 @@
+---
+- name: installing httpd webserver
+  dnf: 
+    name: httpd 
+    state: present 

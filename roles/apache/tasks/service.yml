@@ -2,5 +2,5 @@
 - name: restart Apache service 
   service: 
     name: httpd 
-    state: restarted        
+    state: restarted      
 
