@@ -64,3 +64,79 @@ Example:
 
 This example shows a playbook with the "vars" keyword used and the correct indentation (yml format).
 In this case, the variable is salutations, which is under the vars keyword indicating that it is a variable, and the salutations keyword has a value (Hello Everyone), it is put inside double curly bracket to show that it it a variable with a value, and when used the value will be displayed.
+
+  ### DYNAMIC INVENTORY
+
+The plugin method is the recommended method by Ansible as opposed to the python script.
+
+1:  The first thing to do is to install
+
+pip. pip is Python’s package manager used to install all Python packages  
+
+In this case we need to install boto3 and botocore with pip.
+
+
+1: Install pip with this command in ubuntu: sudo apt install python3-pip
+
+2: Install boto3 and botocore:
+Now, you can use pip to install boto3 and botocore. Run the following command:                          pip3 install boto3 botocore  
+
+
+3:  You can verify that boto3 and botocore have been installed successfully by running the following command, which will display the installed versions:     pip3 show boto3 botocore
+
+4: Since we will be connecting to aws from our command line to fetch the ip addresses we need to configure awscli in our instance, to do we use the following commands: 
+
+5: sudo apt update
+
+6:  sudo apt install awscli
+
+7:  pip install --upgrade awscli botocore
+
+8:  run : aws —version to ensure awscli has been installed 
+
+9 :   Then configure awscli with the command: aws configure then input your access key and secret access keys
+
+10:  we will then configure the aws plugin in ansible to enable ansible talk to aws.
+In the ansible.cfg (I prefer to create my own custom ansible.cfg file in my present working directory)
+add this code to the existing configuration there:      enable_plugins = aws_ec2 
+
+11:  Still in our present working directory we will create the plugin configuration file with the extension  aws_ec2.yaml. so if we chose inventory as the plugin configuration file the full name will be inventory_aws_ec2.yaml.
+
+the configuration is : 
+
+—
+plugin: aws_ec2
+region:
+   - eu-west-2
+
+This tells ansible what region to fetch the ip addresses from, aws_ec2 is the plugin name which is the file extension where the plugin configuration is.
+
+note: we can have more than one region configured in the plugin config file.
+
+To test the configuration without running any playbook, we run this command: ansible-inventory -i inventory_aws_ec2.yaml --list
+
+This command will list/show us all the attributes in this specified region 
+
+To get only the the ip addresses without any other detail run: 
+
+ansible-inventory -i inventory_aws_ec2.yaml —graph 
+
+When running the playbook, we run ansible-playbook -i  <dynamic_inventory_file> playbook
+
+The reason we pass the -i argument is that we are passing a different inventory file from what is specified in the default inventory in the ansible.cfg, the inventory file passed in the command line using the -i argument overrides the whatever is specified in the ansible.cfg file.
+
+
+
+12: Using Filters to target specific instances: We can target specific servers using the various attributes, one of which is the tags. The configuration is as follows: 
+
+—
+plugin: aws_ec2
+region:
+   - eu-west-2
+filters: 
+   tag:Name:  prod* ( in this case, the playbook will be executed in all the servers tagged prod only)
+
+servers can also be selected using other parameters like " instance-state-name: running ", in this case all the servers that are in the running state will be selected, there are other parameters which we will find in the dynamic inventory section of the ansible documentation.
+
+We can go to ansible documentation to get different parameters for filtering.
+

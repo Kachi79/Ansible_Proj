@@ -1,0 +1,23 @@
+---
+- name: Install apache, 
+  hosts: aws_ec2
+  become: yes 
+  #gather_facts: False 
+  tasks:
+    - name: Install apache & update cache
+      apt:
+        update_cache: yes 
+    - name: Install apache 
+      apt: 
+        name=apache2 state=absent      
+    - name: Install Docker & git & wget 
+      apt: 
+        name:
+          - docker.io
+          - git 
+          - wget     
+        state: absent   
+    - name: Install unzip package 
+      apt:
+        name=unzip state=absent    
+        
